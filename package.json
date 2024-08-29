@@ -1,6 +1,6 @@
 {
   "name": "foundryvtt-module-template",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "![](https://img.shields.io/badge/Foundry-v10-informational) <!--- Downloads @ Latest Badge --> <!--- replace <user>/<repo> with your username/repository --> <!--- ![Latest Release Download Count](https://img.shields.io/github/downloads/<user>/<repo>/latest/module.zip) -->",
   "main": "dist/index.js",
   "scripts": {
