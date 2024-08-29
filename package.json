@@ -13,6 +13,7 @@
   "license": "MIT",
   "devDependencies": {
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
+    "@types/Foundry-VTT": "https://github.com/League-of-Foundry-Developers/foundry-vtt-types.git",
     "esbuild": "^0.23.1",
     "esbuild-copy-static-files": "^0.1.0",
     "esbuild-node-externals": "^1.14.0",
