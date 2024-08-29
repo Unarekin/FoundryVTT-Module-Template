@@ -1,5 +1,4 @@
-import moduleSpec from '../module.json';
 
 Hooks.on("ready", () => {
-  console.log(`${moduleSpec.title} ready!`);
+  console.log(`${__MODULE_TITLE__} ready!`);
 })

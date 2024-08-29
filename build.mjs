@@ -9,6 +9,8 @@ import { glob } from "glob";
 import path from "path";
 import jsonMerge from "esbuild-plugin-json-merge";
 
+import moduleSpec from "./module.json" with { "type": "json" };
+
 /** Convenience variable to determine if this is a development or prodution buld. */
 const __DEV__ = process.env.NODE_ENV !== "production" ? true : false;
 
@@ -38,7 +40,12 @@ const results = await build({
   outdir: "./dist",
   bundle: true,
   platform: "browser",
-  define: { __DEV__: __DEV__ ? "true" : "false" },
+  define: {
+    __DEV__: process.env.NODE_ENV === "production" ? "true" : "false",
+    __MODULE_TITLE__: `"${moduleSpec.title}"`,
+    __MODULE_ID__: `"${moduleSpec.id}"`,
+    __MODULE_VERSION__: `"${moduleSpec.version}"`
+  },
   plugins: [
     nodeExternalsPlugin(),
     cleanPlugin({
