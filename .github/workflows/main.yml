@@ -67,7 +67,9 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: "dist"
 
       # Extract version embedded in the tag.
       # This step expects the tag to be one of the following formats:
