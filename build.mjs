@@ -20,6 +20,7 @@ const STYLE_PATH = path.join(SRC_PATH, "styles");
 const TEMPLATE_PATH = path.join(SRC_PATH, "templates");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Import module.json for some config options
 import moduleConfig from "./module.json" assert { type: "json" };
 
@@ -44,6 +45,8 @@ function simpleCopy(src, dest) {
   });
 }
 
+=======
+>>>>>>> 8cac2fb (Added check to make sure file exists before copying)
 // Import module.json for some config options
 import moduleConfig from "./module.json" assert { type: "json" };
 
@@ -102,10 +105,16 @@ const jsonMergers = (
 }, []);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Create our copy plugins, ensuring that the paths we're copying from exist
 const STATIC_FILES = [
   { src: "./module.json", dest: "module.json" },
   { src: "./system.json", dest: "system.json" },
+=======
+// Create our copy plugins, ensuring that the paths we're copying from exist
+const STATIC_FILES = [
+  { src: "./module.json", dest: "module.json" },
+>>>>>>> 8cac2fb (Added check to make sure file exists before copying)
   { src: "./LICENSE", dest: "LICENSE" },
   { src: "./README.md", dest: "README.md" },
   { src: path.join(SRC_PATH, "fonts"), dest: "fonts" },
@@ -136,8 +145,11 @@ for (const file of STATIC_FILES) {
   }
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 07e0103 (Updating build)
+=======
+>>>>>>> 8cac2fb (Added check to make sure file exists before copying)
 const buildResults = await build({
   entryPoints: [
     path.join(SRC_PATH, "module.ts"),
@@ -206,11 +218,7 @@ const buildResults = await build({
 =======
     cleanPlugin({ patterns: "./dist/**" }),
     sassPlugin(),
-    simpleCopy("./module.json", path.join(OUT_PATH, "module.json")),
-    simpleCopy(TEMPLATE_PATH, path.join(OUT_PATH, "templates")),
-    simpleCopy(path.join(SRC_PATH, "fonts"), path.join(OUT_PATH, "fonts")),
-    simpleCopy("./LICENSE", path.join(OUT_PATH, "LICENSE")),
-    simpleCopy("./README.md", path.join(OUT_PATH, "README.md")),
+    ...copyPlugins,
     ...jsonMergers,
 >>>>>>> 07e0103 (Updating build)
   ],
