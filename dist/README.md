@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Unarekin/FoundryVTT-Module-Template/main.yml)
 ![GitHub License](https://img.shields.io/github/license/Unarekin/FoundryVTT-Module-Template)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/Unarekin/FoundryVTT-Module-Template)
@@ -87,6 +88,8 @@ For instructions on how to build a proper module release, see [the original modu
 =======
 =======
 >>>>>>> c877579 (Updated build, module.json, etc)
+=======
+>>>>>>> 1674df4 (Added dist, updated package.json version)
 ![](https://img.shields.io/badge/Foundry-v10-informational)
 <!--- Downloads @ Latest Badge -->
 <!--- replace <user>/<repo> with your username/repository -->
@@ -159,6 +162,9 @@ Does something, probably
 
 ## Changelog
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> release/0.0.3
 =======
 >>>>>>> c877579 (Updated build, module.json, etc)
+=======
+>>>>>>> 1674df4 (Added dist, updated package.json version)
