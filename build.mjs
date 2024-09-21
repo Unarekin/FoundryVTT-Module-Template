@@ -128,10 +128,51 @@ const buildResults = await build({
   external: ["*.woff", "*.woff2", "*.otf", "*.ttf", "*.webp"],
   plugins: [
     nodeExternalsPlugin(),
+<<<<<<< HEAD
     cleanPlugin({ patterns: "./dist/**" }),
     sassPlugin(),
     ...copyPlugins,
     ...jsonMergers,
+=======
+    cleanPlugin({
+      patterns: ["./dist/**/*"],
+    }),
+    sassPlugin(),
+    copyPlugin({
+      src: "./module.json",
+      dest: "./dist/module.json",
+      dereference: true,
+      errorOnExist: false,
+      preserveTimestamps: true,
+    }),
+    copyPlugin({
+      src: "./src/templates",
+      dest: "./dist/templates",
+      dereference: true,
+      errorOnExist: false,
+      preserveTimestamps: true,
+    }),
+    copyPlugin({
+      src: "./LICENSE",
+      dest: "./dist/LICENSE",
+      dereference: true,
+      errorOnExist: false,
+      preserveTimestamps: true,
+    }),
+        copyPlugin({
+      src: "./README.md",
+      dest: "./dist/README.md",
+      dereference: true,
+      errorOnExist: false,
+      preserveTimestamps: true,
+    }),
+    ...Object.entries(languageDefs).map(([lang, entryPoints]) =>
+      jsonMerge({
+        entryPoints,
+        outfile: path.join("./languages", `${lang}.json`),
+      })
+    ),
+>>>>>>> c877579 (Updated build, module.json, etc)
   ],
 });
 

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Unarekin/FoundryVTT-Module-Template/main.yml)
 ![GitHub License](https://img.shields.io/github/license/Unarekin/FoundryVTT-Module-Template)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/Unarekin/FoundryVTT-Module-Template)
@@ -84,6 +85,8 @@ yarn build:prod
 
 For instructions on how to build a proper module release, see [the original module's README](https://github.com/League-of-Foundry-Developers/FoundryVTT-Module-Template/blob/master/README.md).
 =======
+=======
+>>>>>>> c877579 (Updated build, module.json, etc)
 ![](https://img.shields.io/badge/Foundry-v10-informational)
 <!--- Downloads @ Latest Badge -->
 <!--- replace <user>/<repo> with your username/repository -->
@@ -155,4 +158,7 @@ Clicking "Save" in the bottom right will save the new version, which means that 
 Does something, probably
 
 ## Changelog
+<<<<<<< HEAD
 >>>>>>> release/0.0.3
+=======
+>>>>>>> c877579 (Updated build, module.json, etc)
