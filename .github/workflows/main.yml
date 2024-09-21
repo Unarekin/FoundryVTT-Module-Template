@@ -70,7 +70,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
 
       # Extract version embedded in the tag.
@@ -102,10 +102,11 @@ jobs:
           MANIFEST: ${{ env.latest_manifest_url }}
           DOWNLOAD: ${{ env.release_module_url }}
 
-
       # Create a "module.zip" archive containing all the module's required files.
       # If you have other directories or files that will need to be added to
       # your packaged module, add them here.
+      - name: Install ZIP
+        uses: montudor/action-zip@v1
       - name: Create Module Archive
         working-directory: ./dist
         run: |
