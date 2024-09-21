@@ -19,17 +19,6 @@ const OUT_PATH = "./dist";
 const STYLE_PATH = path.join(SRC_PATH, "styles");
 const TEMPLATE_PATH = path.join(SRC_PATH, "templates");
 
-/** Build a simple version of the copy plugin with default settings */
-function simpleCopy(src, dest) {
-  return copyPlugin({
-    src,
-    dest,
-    dereference: true,
-    errorOnExist: false,
-    preserveTimestamps: true,
-  });
-}
-
 // Import module.json for some config options
 import moduleConfig from "./module.json" assert { type: "json" };
 
@@ -86,6 +75,39 @@ const jsonMergers = (
   else return prev;
 }, []);
 
+// Create our copy plugins, ensuring that the paths we're copying from exist
+const STATIC_FILES = [
+  { src: "./module.json", dest: "module.json" },
+  { src: "./LICENSE", dest: "LICENSE" },
+  { src: "./README.md", dest: "README.md" },
+  { src: path.join(SRC_PATH, "fonts"), dest: "fonts" },
+  { src: TEMPLATE_PATH, dest: "templates" },
+  { src: STYLE_PATH, dest: "styles" },
+];
+
+const copyPlugins = [];
+for (const file of STATIC_FILES) {
+  try {
+    const stat = await fs.stat(file.src);
+    copyPlugins.push(
+      copyPlugin({
+        src: file.src,
+        dest: path.join(OUT_PATH, file.dest),
+        dereference: true,
+        errorOnExists: false,
+        preserveTimestamps: true,
+      })
+    );
+  } catch (err) {
+    // ignore ENOENT, throw others
+    if (err.code === "ENOENT") {
+      console.warn(`Attempting to copy non-existent file: ${file.src}`);
+    } else {
+      throw err;
+    }
+  }
+}
+
 const buildResults = await build({
   entryPoints: [
     path.join(SRC_PATH, "module.ts"),
@@ -107,11 +129,7 @@ const buildResults = await build({
     nodeExternalsPlugin(),
     cleanPlugin({ patterns: "./dist/**" }),
     sassPlugin(),
-    simpleCopy("./module.json", path.join(OUT_PATH, "module.json")),
-    simpleCopy(TEMPLATE_PATH, path.join(OUT_PATH, "templates")),
-    simpleCopy(path.join(SRC_PATH, "fonts"), path.join(OUT_PATH, "fonts")),
-    simpleCopy("./LICENSE", path.join(OUT_PATH, "LICENSE")),
-    simpleCopy("./README.md", path.join(OUT_PATH, "README.md")),
+    ...copyPlugins,
     ...jsonMergers,
   ],
 });
