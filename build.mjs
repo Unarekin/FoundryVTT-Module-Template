@@ -51,6 +51,7 @@ const results = await build({
     cleanPlugin({
       patterns: ["./dist/**/*"],
     }),
+    sassPlugin(),
     copyPlugin({
       src: "./module.json",
       dest: "./dist/module.json",
@@ -58,10 +59,23 @@ const results = await build({
       errorOnExist: false,
       preserveTimestamps: true,
     }),
-    sassPlugin(),
     copyPlugin({
       src: "./src/templates",
       dest: "./dist/templates",
+      dereference: true,
+      errorOnExist: false,
+      preserveTimestamps: true,
+    }),
+    copyPlugin({
+      src: "./LICENSE",
+      dest: "./dist/LICENSE",
+      dereference: true,
+      errorOnExist: false,
+      preserveTimestamps: true,
+    }),
+        copyPlugin({
+      src: "./README.md",
+      dest: "./dist/README.md",
       dereference: true,
       errorOnExist: false,
       preserveTimestamps: true,
