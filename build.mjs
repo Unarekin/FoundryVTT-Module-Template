@@ -19,6 +19,7 @@ const OUT_PATH = "./dist";
 const STYLE_PATH = path.join(SRC_PATH, "styles");
 const TEMPLATE_PATH = path.join(SRC_PATH, "templates");
 
+<<<<<<< HEAD
 // Import module.json for some config options
 import moduleConfig from "./module.json" assert { type: "json" };
 
@@ -31,6 +32,31 @@ const __MODULE_VERSION__ = moduleConfig.version;
 const start = Date.now();
 let spinner = null;
 
+=======
+/** Build a simple version of the copy plugin with default settings */
+function simpleCopy(src, dest) {
+  return copyPlugin({
+    src,
+    dest,
+    dereference: true,
+    errorOnExist: false,
+    preserveTimestamps: true,
+  });
+}
+
+// Import module.json for some config options
+import moduleConfig from "./module.json" assert { type: "json" };
+
+// Constants to be inserted into process.env during build
+const __DEV__ = process.env.NODE_ENV !== "production";
+const __MODULE_TITLE__ = moduleConfig.title;
+const __MODULE_ID__ = moduleConfig.id;
+const __MODULE_VERSION__ = moduleConfig.version;
+
+const start = Date.now();
+let spinner = null;
+
+>>>>>>> 07e0103 (Updating build)
 if (!process.argv.slice(2).includes("--no-lint")) {
   const lintStart = Date.now();
   spinner = yoctoSpinner({ text: "Linting..." }).start();
@@ -75,6 +101,7 @@ const jsonMergers = (
   else return prev;
 }, []);
 
+<<<<<<< HEAD
 // Create our copy plugins, ensuring that the paths we're copying from exist
 const STATIC_FILES = [
   { src: "./module.json", dest: "module.json" },
@@ -109,6 +136,8 @@ for (const file of STATIC_FILES) {
   }
 }
 
+=======
+>>>>>>> 07e0103 (Updating build)
 const buildResults = await build({
   entryPoints: [
     path.join(SRC_PATH, "module.ts"),
@@ -128,6 +157,7 @@ const buildResults = await build({
   external: ["*.woff", "*.woff2", "*.otf", "*.ttf", "*.webp"],
   plugins: [
     nodeExternalsPlugin(),
+<<<<<<< HEAD
 <<<<<<< HEAD
     cleanPlugin({ patterns: "./dist/**" }),
     sassPlugin(),
@@ -173,6 +203,16 @@ const buildResults = await build({
       })
     ),
 >>>>>>> c877579 (Updated build, module.json, etc)
+=======
+    cleanPlugin({ patterns: "./dist/**" }),
+    sassPlugin(),
+    simpleCopy("./module.json", path.join(OUT_PATH, "module.json")),
+    simpleCopy(TEMPLATE_PATH, path.join(OUT_PATH, "templates")),
+    simpleCopy(path.join(SRC_PATH, "fonts"), path.join(OUT_PATH, "fonts")),
+    simpleCopy("./LICENSE", path.join(OUT_PATH, "LICENSE")),
+    simpleCopy("./README.md", path.join(OUT_PATH, "README.md")),
+    ...jsonMergers,
+>>>>>>> 07e0103 (Updating build)
   ],
 });
 
