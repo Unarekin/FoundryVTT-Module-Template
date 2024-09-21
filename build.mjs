@@ -19,8 +19,6 @@ const OUT_PATH = "./dist";
 const STYLE_PATH = path.join(SRC_PATH, "styles");
 const TEMPLATE_PATH = path.join(SRC_PATH, "templates");
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 // Import module.json for some config options
 import moduleConfig from "./module.json" assert { type: "json" };
 
@@ -33,33 +31,6 @@ const __MODULE_VERSION__ = moduleConfig.version;
 const start = Date.now();
 let spinner = null;
 
-=======
-/** Build a simple version of the copy plugin with default settings */
-function simpleCopy(src, dest) {
-  return copyPlugin({
-    src,
-    dest,
-    dereference: true,
-    errorOnExist: false,
-    preserveTimestamps: true,
-  });
-}
-
-=======
->>>>>>> 8cac2fb (Added check to make sure file exists before copying)
-// Import module.json for some config options
-import moduleConfig from "./module.json" assert { type: "json" };
-
-// Constants to be inserted into process.env during build
-const __DEV__ = process.env.NODE_ENV !== "production";
-const __MODULE_TITLE__ = moduleConfig.title;
-const __MODULE_ID__ = moduleConfig.id;
-const __MODULE_VERSION__ = moduleConfig.version;
-
-const start = Date.now();
-let spinner = null;
-
->>>>>>> 07e0103 (Updating build)
 if (!process.argv.slice(2).includes("--no-lint")) {
   const lintStart = Date.now();
   spinner = yoctoSpinner({ text: "Linting..." }).start();
@@ -104,17 +75,10 @@ const jsonMergers = (
   else return prev;
 }, []);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 // Create our copy plugins, ensuring that the paths we're copying from exist
 const STATIC_FILES = [
   { src: "./module.json", dest: "module.json" },
   { src: "./system.json", dest: "system.json" },
-=======
-// Create our copy plugins, ensuring that the paths we're copying from exist
-const STATIC_FILES = [
-  { src: "./module.json", dest: "module.json" },
->>>>>>> 8cac2fb (Added check to make sure file exists before copying)
   { src: "./LICENSE", dest: "LICENSE" },
   { src: "./README.md", dest: "README.md" },
   { src: path.join(SRC_PATH, "fonts"), dest: "fonts" },
@@ -145,11 +109,6 @@ for (const file of STATIC_FILES) {
   }
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> 07e0103 (Updating build)
-=======
->>>>>>> 8cac2fb (Added check to make sure file exists before copying)
 const buildResults = await build({
   entryPoints: [
     path.join(SRC_PATH, "module.ts"),
@@ -169,58 +128,10 @@ const buildResults = await build({
   external: ["*.woff", "*.woff2", "*.otf", "*.ttf", "*.webp"],
   plugins: [
     nodeExternalsPlugin(),
-<<<<<<< HEAD
-<<<<<<< HEAD
     cleanPlugin({ patterns: "./dist/**" }),
     sassPlugin(),
     ...copyPlugins,
     ...jsonMergers,
-=======
-    cleanPlugin({
-      patterns: ["./dist/**/*"],
-    }),
-    sassPlugin(),
-    copyPlugin({
-      src: "./module.json",
-      dest: "./dist/module.json",
-      dereference: true,
-      errorOnExist: false,
-      preserveTimestamps: true,
-    }),
-    copyPlugin({
-      src: "./src/templates",
-      dest: "./dist/templates",
-      dereference: true,
-      errorOnExist: false,
-      preserveTimestamps: true,
-    }),
-    copyPlugin({
-      src: "./LICENSE",
-      dest: "./dist/LICENSE",
-      dereference: true,
-      errorOnExist: false,
-      preserveTimestamps: true,
-    }),
-        copyPlugin({
-      src: "./README.md",
-      dest: "./dist/README.md",
-      dereference: true,
-      errorOnExist: false,
-      preserveTimestamps: true,
-    }),
-    ...Object.entries(languageDefs).map(([lang, entryPoints]) =>
-      jsonMerge({
-        entryPoints,
-        outfile: path.join("./languages", `${lang}.json`),
-      })
-    ),
->>>>>>> c877579 (Updated build, module.json, etc)
-=======
-    cleanPlugin({ patterns: "./dist/**" }),
-    sassPlugin(),
-    ...copyPlugins,
-    ...jsonMergers,
->>>>>>> 07e0103 (Updating build)
   ],
 });
 
