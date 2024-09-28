@@ -128,4 +128,6 @@ out
 .yarn/install-state.gz
 .pnp.*
 
+.angular
+cypress/reports
 lint-report.html
