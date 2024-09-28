@@ -51,12 +51,13 @@ Cypress.Commands.add('adminLogin', (password: string) => {
   cy.get("input#key")
     .type(password)
     .get("div#setup-authentication button[type='submit']").click()
-    .get("aside.tour-center-step.tour a.step-button[data-action='exit']").click()
     ;
 });
 
 Cypress.Commands.add("selectWorld", (name: string) => {
-  cy.get(`li[data-package-id=${name}]`)
+  cy
+    .get("aside.tour-center-step.tour a.step-button[data-action='exit']").click()
+    .get(`li[data-package-id=${name}]`)
     .trigger("mouseenter")
     // .get("a.control-play[data-action='exit']").click()
     .get("a[data-action='worldLaunch']").first().click({ force: true })
