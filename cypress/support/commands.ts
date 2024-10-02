@@ -60,7 +60,7 @@ Cypress.Commands.add("selectWorld", (name: string) => {
     .get(`li[data-package-id=${name}]`)
     .trigger("mouseenter")
     // .get("a.control-play[data-action='exit']").click()
-    .get("a[data-action='worldLaunch']").first().click({ force: true })
+    .get(`li[data-package-id="${name}"] a[data-action='worldLaunch']`).first().click({ force: true })
     ;
 });
 

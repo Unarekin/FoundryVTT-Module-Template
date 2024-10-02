@@ -15,6 +15,12 @@ module.exports = defineConfig({
     baseUrl: "http://localhost:30000",
     setupNodeEvents(on, config) {
       require("cypress-mochawesome-reporter/plugin")(on);
+
+      on("before:browser:launch", (browser, launchOptions) => {
+        launchOptions.preferences.default['default.disable_3d_apis'] = false;
+        launchOptions.args.push('--enable-features=VaapiVideoDecoder');
+        launchOptions.args.push('--use-gl=egl');
+      });
     },
     experimentalInteractiveRunEvents: true
   },
