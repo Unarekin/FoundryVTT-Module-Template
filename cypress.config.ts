@@ -13,12 +13,14 @@ module.exports = defineConfig({
   reporterOptions: {
     charts: true,
     reportPageTitle: "FVTT Module Template Tests",
+    overwrite: false,
   },
   e2e: {
+    baseUrl: "http://localhost:30000",
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      const webpackPreprocessor = require("@cypress/webpack-preprocessor");
       require("cypress-mochawesome-reporter/plugin")(on);
+      const webpackPreprocessor = require("@cypress/webpack-preprocessor");
       const options = {
         webpackOptions: {
           resolve: {

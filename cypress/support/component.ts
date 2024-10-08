@@ -1,4 +1,4 @@
-import "./commands";
+import "cypress-mochawesome-reporter/register"
 import path from "path-browserify";
 import Handlebars from "handlebars";
 
