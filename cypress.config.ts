@@ -1,4 +1,6 @@
 import { defineConfig } from "cypress";
+import path from "path";
+import { promises as fs } from "fs";
 
 module.exports = defineConfig({
   viewportWidth: 1920,
@@ -9,27 +11,41 @@ module.exports = defineConfig({
   screenshotsFolder: "./cypress/reports/screenshots",
   screenshotOnRunFailure: true,
   reporterOptions: {
-
+    charts: true,
+    reportPageTitle: "FVTT Module Template Tests",
   },
   e2e: {
-    baseUrl: "http://localhost:30000",
     setupNodeEvents(on, config) {
+      // implement node event listeners here
+      const webpackPreprocessor = require("@cypress/webpack-preprocessor");
       require("cypress-mochawesome-reporter/plugin")(on);
-
-      on("before:browser:launch", (browser, launchOptions) => {
-        launchOptions.preferences.default['default.disable_3d_apis'] = false;
-        launchOptions.args.push('--enable-features=VaapiVideoDecoder');
-        launchOptions.args.push('--use-gl=egl');
-      });
+      const options = {
+        webpackOptions: {
+          resolve: {
+            alias: {
+              "@src": path.resolve(__dirname, "./src")
+            }
+          }
+        },
+        watchOptions: {}
+      }
+      on("file:preprocessor", webpackPreprocessor(options));
+      return config;
     },
-    experimentalInteractiveRunEvents: true
   },
 
   component: {
     devServer: {
-      framework: "angular",
+      framework: "cypress-ct-html" as any,
       bundler: "webpack",
     },
     specPattern: "**/*.cy.ts",
-  },
+    setupNodeEvents(on, config) {
+      require("cypress-mochawesome-reporter/plugin")(on);
+      on("task", {
+        readFileMaybe(filename) { return fs.readFile(filename, "utf-8") }
+      });
+      return config;
+    }
+  }
 });
