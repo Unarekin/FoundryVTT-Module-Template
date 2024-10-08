@@ -1,3 +1,4 @@
+import addContext from 'mochawesome/addContext';
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
@@ -35,3 +36,4 @@
 //     }
 //   }
 // }
+

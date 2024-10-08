@@ -7,18 +7,21 @@ module.exports = defineConfig({
   viewportHeight: 1080,
   reporter: "cypress-mochawesome-reporter",
   video: true,
-  videosFolder: "./cypress/reports/video",
-  screenshotsFolder: "./cypress/reports/screenshots",
-  screenshotOnRunFailure: true,
+  videosFolder: "cypress/reports/videos",
+  screenshotsFolder: "cypress/reports/screenshots",
   reporterOptions: {
     charts: true,
-    reportPageTitle: "FVTT Module Template Tests",
+    overwrite: false,
+    html: true,
+    reportDir: "cypress/reports"
   },
+
   e2e: {
+    baseUrl: "http://localhost:30000",
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      const webpackPreprocessor = require("@cypress/webpack-preprocessor");
       require("cypress-mochawesome-reporter/plugin")(on);
+      const webpackPreprocessor = require("@cypress/webpack-preprocessor");
       const options = {
         webpackOptions: {
           resolve: {
