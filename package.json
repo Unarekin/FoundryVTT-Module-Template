@@ -37,6 +37,7 @@
     "cypress-multi-reporters": "^1.6.4",
     "deepmerge-ts": "^7.1.0",
     "docker-compose": "^1.1.0",
+    "dotenv": "^16.4.5",
     "esbuild": "^0.23.1",
     "esbuild-copy-static-files": "^0.1.0",
     "esbuild-node-externals": "^1.14.0",
@@ -60,6 +61,7 @@
     "typescript": "^5.6.2",
     "typescript-eslint": "^8.6.0",
     "unzipper": "^0.12.3",
+    "vite": "^5.4.9",
     "webpack": "^5.95.0",
     "yocto-spinner": "^0.1.0"
   }
