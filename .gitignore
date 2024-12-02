@@ -133,3 +133,5 @@ cypress/reports
 lint-report.html
 
 foundryvtt-12.331.zip
+
+dist/
