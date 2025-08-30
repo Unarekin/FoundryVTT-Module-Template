@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node build.mjs",
     "build:prod": "NODE_ENV=production node build.mjs",
-    "build:types": "npx tsc --declaration --emitDeclarationOnly --declarationDir types"
+    "build:types": "npx tsc --declaration --emitDeclarationOnly --declarationDir types",
+    "typedoc": "npx typedoc"
   },
   "repository": {
     "type": "git",
